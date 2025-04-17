@@ -21,8 +21,9 @@ def check_health(endpoint):
     body = endpoint.get('body')
 
     try:
-        response = requests.request(method, url, headers=headers, json=body)
-        if 200 <= response.status_code < 300 and response.elapsed.microseconds <= 500000: # UP requires a status code of 200-299, and a response time of less than 500ms (500000 microseconds)
+        response = requests.request(method, url, headers=headers, json=body, timeout=0.5)
+        # UP requires a status code of 200-299 and a response time of less than 500ms (0.5s for timeout value in request)
+        if 200 <= response.status_code < 300: 
             return "UP"
         else:
             return "DOWN"
@@ -36,7 +37,7 @@ def monitor_endpoints(file_path):
 
     while True:
         for endpoint in config:
-            domain = endpoint["url"].split("//")[-1].split("/")[0]
+            domain = endpoint["url"].split("//")[-1].split("/")[0].split(":")[0]
             result = check_health(endpoint)
 
             domain_stats[domain]["total"] += 1
