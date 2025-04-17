@@ -1,3 +1,7 @@
+- name: sample get with port
+  url: https://some-site.com:12345/getting-a-value
+- name: additional sample get with port
+  url: https://some-site.com:6789/getting-a-value
 - body: '{"foo":"bar"}'
   headers:
     content-type: application/json
