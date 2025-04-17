@@ -26,7 +26,7 @@ async def check_health_async(endpoint, session):
         startTime = datetime.datetime.now()
         async with session.request(method, url, headers=headers, json=body, timeout=1) as response:
             elapsed = datetime.datetime.now() - startTime
-            # UP requires a status code of 200-299 and a response time of less than 500ms
+            # UP requires a status code of 200-299 and a response time of less than 500ms (500000 microseconds)
             if 200 <= response.status < 300 and elapsed.microseconds <= 500000:
                 return "UP"
             else:

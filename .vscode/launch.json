@@ -10,8 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            // "args": "${command:pickArgs}"
-            "args": "C:\\VSProjects\\Fetch\\sre-take-home-exercise-python-main\\sre-take-home-exercise-python-main\\sample.yaml"
+            "args": "${command:pickArgs}"
         }
     ]
 }
