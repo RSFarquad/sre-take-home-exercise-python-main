@@ -11,7 +11,7 @@ def load_config(file_path):
 # Function to perform health checks
 def check_health(endpoint):
     url = endpoint['url']
-    method = endpoint.get('method')
+    method = endpoint.get('method') if endpoint.get('method') != None else 'GET'  #'NoneType' object has no attribute 'upper'
     headers = endpoint.get('headers')
     body = endpoint.get('body')
 
