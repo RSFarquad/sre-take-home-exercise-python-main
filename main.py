@@ -8,10 +8,15 @@ def load_config(file_path):
     with open(file_path, 'r') as file:
         return yaml.safe_load(file)
 
+def get_method(endpoint):
+    valFromFile = endpoint.get('method')
+    # if no value in the file, we can assume that the correct method is GET
+    return valFromFile if valFromFile != None else 'GET'
+
 # Function to perform health checks
 def check_health(endpoint):
     url = endpoint['url']
-    method = endpoint.get('method') if endpoint.get('method') != None else 'GET'  #'NoneType' object has no attribute 'upper'
+    method = get_method(endpoint)
     headers = endpoint.get('headers')
     body = endpoint.get('body')
 
