@@ -22,7 +22,7 @@ def check_health(endpoint):
 
     try:
         response = requests.request(method, url, headers=headers, json=body)
-        if 200 <= response.status_code < 300:
+        if 200 <= response.status_code < 300 and response.elapsed.microseconds <= 500000: # UP requires a status code of 200-299, and a response time of less than 500ms (500000 microseconds)
             return "UP"
         else:
             return "DOWN"
